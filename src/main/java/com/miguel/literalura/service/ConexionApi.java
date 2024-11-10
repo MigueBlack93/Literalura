@@ -10,6 +10,6 @@ public class ConexionApi {
     public String conectarApi (String tipo){
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().build();
-        HttpResponse response = 
+        HttpResponse response =
     }
 }
