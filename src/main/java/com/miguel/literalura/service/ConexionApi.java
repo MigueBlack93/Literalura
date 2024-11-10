@@ -7,12 +7,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ConexionApi {
-    private final String url = "https://gutendex.com/books";
+    private final String url = "https://gutendex.com/books?search=";
 
-    public String conectarApi (String tipo){
+    public String conectarApi (String libro){
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + tipo))
+                .uri(URI.create(url + libro.replace(" ", "%20")))
                 .build();
         HttpResponse<String> response = null;
         try {
