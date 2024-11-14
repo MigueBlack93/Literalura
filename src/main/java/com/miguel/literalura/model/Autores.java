@@ -1,13 +1,19 @@
 package com.miguel.literalura.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "autores")
 public class Autores {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
     private Integer nacimiento;
     private Integer deceso;
+    @ManyToOne
+    private Libro libro;
+
+    public Autores(){}
+
 }
