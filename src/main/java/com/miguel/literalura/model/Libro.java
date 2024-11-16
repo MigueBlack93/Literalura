@@ -15,7 +15,14 @@ public class Libro {
     private List lenguajes;
     private Integer descargas;
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Autores> autores;
+    private List<DatosAutores> autores;
 
     public Libro(){}
+
+    public Libro(DatosLibro datosLibro){
+        this.titulo = datosLibro.titulo();
+        this.lenguajes = datosLibro.lenguajes();
+        this.descargas = datosLibro.descargas();
+        this.autores = datosLibro.autores();
+    }
 }
