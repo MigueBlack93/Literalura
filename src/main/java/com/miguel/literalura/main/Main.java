@@ -71,7 +71,9 @@ public class Main {
     }
 
     private void buscarLibro() {
-        
+        DatosLibro datosLibro = getDatosLibro();
+        Libro libro = new Libro(datosLibro);
+        System.out.println(datosLibro);
     }
 
     private void mostrarLibrosRegistrados() {
