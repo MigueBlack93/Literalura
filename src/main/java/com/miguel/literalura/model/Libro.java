@@ -10,11 +10,9 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String titulo;
     private List lenguajes;
     private Integer descargas;
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<DatosAutores> autores;
 
     public Libro(){}
@@ -24,5 +22,45 @@ public class Libro {
         this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
         this.autores = datosLibro.autores();
+   }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public List getLenguajes() {
+        return lenguajes;
+    }
+
+    public void setLenguajes(List lenguajes) {
+        this.lenguajes = lenguajes;
+    }
+
+    public Integer getDescargas() {
+        return descargas;
+    }
+
+    public void setDescargas(Integer descargas) {
+        this.descargas = descargas;
+    }
+
+    public List<DatosAutores> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<DatosAutores> autores) {
+        this.autores = autores;
     }
 }
