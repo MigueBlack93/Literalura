@@ -11,8 +11,7 @@ public class Autores {
     private String nombre;
     private Integer nacimiento;
     private Integer deceso;
-    @ManyToOne
-    private Libro libro;
+//    private Libro libro;
 
     public Autores(){}
 
