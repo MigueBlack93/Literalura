@@ -2,7 +2,9 @@ package com.miguel.literalura.main;
 
 import com.miguel.literalura.model.Autores;
 import com.miguel.literalura.model.DatosLibro;
+import com.miguel.literalura.model.DatosResultados;
 import com.miguel.literalura.model.Libro;
+import com.miguel.literalura.repository.LibroRepository;
 import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
 
@@ -14,6 +16,11 @@ public class Main {
     private ConvierteDatos convierteDatos = new ConvierteDatos();
     private Libro libro = new Libro();
     private Autores autores = new Autores();
+    private LibroRepository repository;
+
+    public Main(LibroRepository repository){
+        this.repository = repository;
+    }
 
     public void menu(){
         boolean salir = false;
@@ -62,18 +69,18 @@ public class Main {
         }
     }
 
-    private DatosLibro getDatosLibro(){
+    private DatosResultados getDatosResultados(){
         System.out.println("Ingresa el nombre del libro o el autor que quieres buscar:");
         var nombreABuscar = teclado.nextLine();
         var json = conexionApi.conectarApi(nombreABuscar);
-        DatosLibro datosLibro = convierteDatos.obtenerDatos(json, DatosLibro.class);
-        return datosLibro;
+        DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
+        return datosResultados;
     }
 
     private void buscarLibro() {
-        DatosLibro datosLibro = getDatosLibro();
-        Libro libro = new Libro(datosLibro);
-        System.out.println(datosLibro);
+        DatosResultados datosResultados = getDatosResultados();
+//        Libro libro = new Libro();
+        System.out.println(datosResultados);
     }
 
     private void mostrarLibrosRegistrados() {
