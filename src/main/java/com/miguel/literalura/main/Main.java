@@ -7,6 +7,7 @@ import com.miguel.literalura.repository.LibroRepository;
 import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +17,8 @@ public class Main {
     private Libro libro = new Libro();
     private Autor autor = new Autor();
     private LibroRepository repository;
+    private List<Libro> libros;
+    private List<Autor> autores;
 
     public Main(LibroRepository repository){
         this.repository = repository;
@@ -77,9 +80,13 @@ public class Main {
     }
 
     private void mostrarLibrosRegistrados() {
+        libros = repository.findAll();
+
+        libros.forEach(l -> System.out.println(l.toString()));
     }
 
     private void mostrarAutoresRegistrados() {
+
     }
 
     private void mostrarAutoresRegistradosPorPeriodo() {
