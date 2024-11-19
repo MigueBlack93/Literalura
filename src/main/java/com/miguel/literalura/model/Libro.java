@@ -11,7 +11,7 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private List lenguajes;
+    private String lenguajes;
     private Integer descargas;
     private List<Autor> autores;
 
@@ -41,11 +41,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public List getLenguajes() {
+    public String getLenguajes() {
         return lenguajes;
     }
 
-    public void setLenguajes(List lenguajes) {
+    public void setLenguajes(String lenguajes) {
         this.lenguajes = lenguajes;
     }
 
@@ -62,6 +62,6 @@ public class Libro {
     }
 
     public void setAutores(List<Autor> autores) {
-        this.autores = autores;
+        this.autores = autores(a -> setAutores());
     }
 }
