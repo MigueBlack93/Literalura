@@ -11,7 +11,16 @@ public class Autor {
     private String nombre;
     private Integer nacimiento;
     private Integer deceso;
-//    private Libro libro;
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    private Libro libro;
 
     public Autor(){}
 
