@@ -86,7 +86,6 @@ public class Main {
     }
 
     private void mostrarAutoresRegistrados() {
-
     }
 
     private void mostrarAutoresRegistradosPorPeriodo() {
