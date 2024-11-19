@@ -13,7 +13,9 @@ public class Libro {
     private String titulo;
     private List lenguajes;
     private Integer descargas;
-    private List<DatosAutores> autores;
+    private List<Autor> autores;
+
+    private Autor autor = new Autor();
 
     public Libro(){}
 
@@ -21,7 +23,6 @@ public class Libro {
         this.titulo = datosLibro.titulo();
         this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
-        this.autores = datosLibro.autores();
    }
 
     public Long getId() {
@@ -56,11 +57,11 @@ public class Libro {
         this.descargas = descargas;
     }
 
-    public List<DatosAutores> getAutores() {
+    public List<Autor> getAutores() {
         return autores;
     }
 
-    public void setAutores(List<DatosAutores> autores) {
+    public void setAutores(List<Autor> autores) {
         this.autores = autores;
     }
 }
