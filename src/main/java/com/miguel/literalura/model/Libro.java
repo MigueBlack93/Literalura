@@ -32,12 +32,11 @@ public class Libro {
 
         if (datosLibro.autores() != null) {
             this.autores = datosLibro.autores().stream()
-                    .map(autor -> new Autor(autor)) // Suponiendo que Autor tiene un constructor que recibe DatosAutores
+                    .map(autor -> new Autor(autor))
                     .collect(Collectors.toList());
             autorRepository.saveAll(autores);
         }
-
-   }
+    }
 
     public Long getId() {
         return id;
