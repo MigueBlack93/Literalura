@@ -1,7 +1,9 @@
 package com.miguel.literalura.model;
 
+import com.miguel.literalura.repository.AutorRepository;
 import com.miguel.literalura.repository.LibroRepository;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +20,8 @@ public class Libro {
     private Integer descargas;
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
-    private LibroRepository repository;
+    @Autowired
+    private AutorRepository autorRepository;
 
     public Libro(){}
 
@@ -31,7 +34,7 @@ public class Libro {
             this.autores = datosLibro.autores().stream()
                     .map(autor -> new Autor(autor)) // Suponiendo que Autor tiene un constructor que recibe DatosAutores
                     .collect(Collectors.toList());
-            repository.saveAll(autores);
+            autorRepository.saveAll(autores);
         }
 
    }
