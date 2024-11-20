@@ -77,7 +77,7 @@ public class Main {
         String json = conexionApi.conectarApi(nombreABuscar);
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
-        libros = datosResultados.libros().stream().map(libro -> new Libro(libro)).collect(Collectors.toList());
+        libros = datosResultados.libros().stream().map(libro -> repository.save(new Libro(libro))).collect(Collectors.toList());
         System.out.println(libros);
     }
 
