@@ -17,6 +17,8 @@ public class Autor {
 
     public Autor(){}
 
+    public Autor(DatosAutores datosAutores){}
+
     public Libro getLibro() {
         return libro;
     }
