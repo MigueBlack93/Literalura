@@ -1,5 +1,6 @@
 package com.miguel.literalura.model;
 
+import com.miguel.literalura.repository.LibroRepository;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Libro {
     private Integer descargas;
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
+    private LibroRepository repository;
 
     public Libro(){}
 
@@ -29,7 +31,9 @@ public class Libro {
             this.autores = datosLibro.autores().stream()
                     .map(autor -> new Autor(autor)) // Suponiendo que Autor tiene un constructor que recibe DatosAutores
                     .collect(Collectors.toList());
+            repository.saveAll(autores);
         }
+
    }
 
     public Long getId() {
