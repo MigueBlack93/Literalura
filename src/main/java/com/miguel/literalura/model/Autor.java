@@ -17,7 +17,11 @@ public class Autor {
 
     public Autor(){}
 
-    public Autor(DatosAutores datosAutores){}
+    public Autor(DatosAutores datosAutores){
+        this.nombre = datosAutores.nombre();
+        this.nacimiento = datosAutores.nacimiento();
+        this.deceso = datosAutores.deceso();
+    }
 
     public Libro getLibro() {
         return libro;
