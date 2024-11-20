@@ -3,6 +3,7 @@ package com.miguel.literalura.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "libros")
@@ -23,6 +24,12 @@ public class Libro {
         this.titulo = datosLibro.titulo();
         this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
+
+        if (datosLibro.autores() != null) {
+            this.autores = datosLibro.autores().stream()
+                    .map(autor -> new Autor(autor)) // Suponiendo que Autor tiene un constructor que recibe DatosAutores
+                    .collect(Collectors.toList());
+        }
    }
 
     public Long getId() {
