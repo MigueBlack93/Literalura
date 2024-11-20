@@ -17,7 +17,7 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
 
-    public Libro(Libro libro){}
+    public Libro(){}
 
     public Libro(DatosLibro datosLibro){
         this.titulo = datosLibro.titulo();
