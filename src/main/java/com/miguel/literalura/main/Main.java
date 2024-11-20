@@ -8,6 +8,7 @@ import com.miguel.literalura.repository.LibroRepository;
 import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -19,6 +20,10 @@ public class Main {
     private LibroRepository repository;
     private List<Libro> libros;
     private List<Autor> autores;
+    private String fechaInicialString;
+    private String fechaFinalString;
+    private LocalDate fechaInicial;
+    private LocalDate fechaFinal;
 
     public Main(LibroRepository repository){
         this.repository = repository;
@@ -77,7 +82,8 @@ public class Main {
         String json = conexionApi.conectarApi(nombreABuscar);
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
-        libros = datosResultados.libros().stream().map(libro -> repository.save(new Libro(libro))).collect(Collectors.toList());
+        libros = datosResultados.libros().stream().map(libro -> new Libro(libro)).collect(Collectors.toList());
+        libros.forEach(l -> repository.save(l));
         System.out.println(libros);
     }
 
@@ -91,6 +97,11 @@ public class Main {
     }
 
     private void mostrarAutoresRegistradosPorPeriodo() {
+        System.out.println("Ingresa el año inicial del período:");
+        fechaInicialString = teclado.nextLine();
+        System.out.println("Ingresa el año final del período:");
+        fechaFinalString = teclado.nextLine();
+
     }
 
     private void mostrarLibrosPorIdioma() {
