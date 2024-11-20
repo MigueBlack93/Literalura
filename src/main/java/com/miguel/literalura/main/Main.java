@@ -83,8 +83,8 @@ public class Main {
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
         libros = datosResultados.libros().stream().map(libro -> new Libro(libro)).collect(Collectors.toList());
-        libros.forEach(l -> repository.save(l));
-        System.out.println(libros);
+        repository.saveAll(libros);
+        System.out.println(libros.toString());
     }
 
     private void mostrarLibrosRegistrados() {
