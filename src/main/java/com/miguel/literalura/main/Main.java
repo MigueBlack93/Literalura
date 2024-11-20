@@ -73,8 +73,8 @@ public class Main {
 
     private void buscarLibro() {
         System.out.println("Ingresa el nombre del libro o el autor que quieres buscar:");
-        var nombreABuscar = teclado.nextLine();
-        var json = conexionApi.conectarApi(nombreABuscar);
+        String nombreABuscar = teclado.nextLine();
+        String json = conexionApi.conectarApi(nombreABuscar);
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
     }
