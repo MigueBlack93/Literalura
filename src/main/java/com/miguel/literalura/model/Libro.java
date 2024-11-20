@@ -48,8 +48,6 @@ public class Libro {
         this.titulo = titulo;
     }
 
-
-
     public Integer getDescargas() {
         return descargas;
     }
