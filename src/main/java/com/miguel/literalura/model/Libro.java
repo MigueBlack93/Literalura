@@ -17,7 +17,7 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
 
-    public Libro(){}
+    public Libro(Libro libro){}
 
     public Libro(DatosLibro datosLibro){
         this.titulo = datosLibro.titulo();
@@ -41,13 +41,7 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public List<String> getLenguajes() {
-        return lenguajes;
-    }
 
-    public void setLenguajes(List<String> lenguajes) {
-        this.lenguajes = lenguajes;
-    }
 
     public Integer getDescargas() {
         return descargas;
