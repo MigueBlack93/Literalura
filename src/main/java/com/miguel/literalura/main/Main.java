@@ -1,6 +1,7 @@
 package com.miguel.literalura.main;
 
 import com.miguel.literalura.model.Autor;
+import com.miguel.literalura.model.DatosLibro;
 import com.miguel.literalura.model.DatosResultados;
 import com.miguel.literalura.model.Libro;
 import com.miguel.literalura.repository.LibroRepository;
@@ -9,13 +10,12 @@ import com.miguel.literalura.service.ConvierteDatos;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     private Scanner teclado = new Scanner(System.in);
     private ConexionApi conexionApi = new ConexionApi();
     private ConvierteDatos convierteDatos = new ConvierteDatos();
-    private Libro libro = new Libro();
-    private Autor autor = new Autor();
     private LibroRepository repository;
     private List<Libro> libros;
     private List<Autor> autores;
@@ -77,6 +77,8 @@ public class Main {
         String json = conexionApi.conectarApi(nombreABuscar);
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
+        libros = datosResultados.libros().stream().map(libro -> new Libro(libro)).collect(Collectors.toList());
+        System.out.println(libros);
     }
 
     private void mostrarLibrosRegistrados() {
