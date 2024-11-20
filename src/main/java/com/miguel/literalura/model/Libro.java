@@ -10,12 +10,12 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String titulo;
-    private String lenguajes;
+    private List<String> lenguajes;
     private Integer descargas;
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
-
-    private Autor autor = new Autor();
 
     public Libro(){}
 
@@ -41,11 +41,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getLenguajes() {
+    public List<String> getLenguajes() {
         return lenguajes;
     }
 
-    public void setLenguajes(String lenguajes) {
+    public void setLenguajes(List<String> lenguajes) {
         this.lenguajes = lenguajes;
     }
 
