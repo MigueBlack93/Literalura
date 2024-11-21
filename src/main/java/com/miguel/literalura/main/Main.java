@@ -1,7 +1,6 @@
 package com.miguel.literalura.main;
 
 import com.miguel.literalura.model.Autor;
-import com.miguel.literalura.model.DatosLibro;
 import com.miguel.literalura.model.DatosResultados;
 import com.miguel.literalura.model.Libro;
 import com.miguel.literalura.repository.AutorRepository;
@@ -10,7 +9,6 @@ import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -22,12 +20,12 @@ public class Main {
     private LibroRepository repository;
     private List<Libro> libros;
     private List<Autor> autores;
-    private String fechaInicialString;
-    private String fechaFinalString;
-    private LocalDate fechaInicial;
-    private LocalDate fechaFinal;
+    private int fechaInicial;
+    private int fechaFinal;
     @Autowired
     private AutorRepository autorRepository;
+    private List<Autor> autoresPorFecha;
+    private List<Libro> librosPorIdioma;
 
     public Main(LibroRepository repository){
         this.repository = repository;
@@ -105,12 +103,28 @@ public class Main {
 
     private void mostrarAutoresRegistradosPorPeriodo() {
         System.out.println("Ingresa el año inicial del período:");
-        fechaInicialString = teclado.nextLine();
+        fechaInicial = teclado.nextInt();
         System.out.println("Ingresa el año final del período:");
-        fechaFinalString = teclado.nextLine();
+        fechaFinal = teclado.nextInt();
 
+        autoresPorFecha = autorRepository.buscarAutoresRegistradosEnUnPeriodo(fechaInicial, fechaFinal);
+
+        if (!autoresPorFecha.isEmpty()){
+            autoresPorFecha.forEach(autor -> System.out.println(autor.toString()));
+        }else {
+            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
+        }
     }
 
     private void mostrarLibrosPorIdioma() {
+        System.out.println("Ingresa el nombre del libro o el autor que quieres buscar:");
+        String idiomaABuscar = teclado.nextLine();
+        librosPorIdioma = repository.buscarLibroPorIdioma(idiomaABuscar);
+
+        if (!librosPorIdioma.isEmpty()){
+            librosPorIdioma.forEach(autor -> System.out.println(autor.toString()));
+        }else {
+            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
+        }
     }
 }
