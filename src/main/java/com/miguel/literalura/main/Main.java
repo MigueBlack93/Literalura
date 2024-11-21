@@ -4,9 +4,11 @@ import com.miguel.literalura.model.Autor;
 import com.miguel.literalura.model.DatosLibro;
 import com.miguel.literalura.model.DatosResultados;
 import com.miguel.literalura.model.Libro;
+import com.miguel.literalura.repository.AutorRepository;
 import com.miguel.literalura.repository.LibroRepository;
 import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,6 +26,8 @@ public class Main {
     private String fechaFinalString;
     private LocalDate fechaInicial;
     private LocalDate fechaFinal;
+    @Autowired
+    private AutorRepository autorRepository;
 
     public Main(LibroRepository repository){
         this.repository = repository;
@@ -94,7 +98,9 @@ public class Main {
     }
 
     private void mostrarAutoresRegistrados() {
+        autores = autorRepository.findAll();
 
+        autores.forEach(a -> System.out.println(a.toString()));
     }
 
     private void mostrarAutoresRegistradosPorPeriodo() {
