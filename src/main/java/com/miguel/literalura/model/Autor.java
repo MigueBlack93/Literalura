@@ -9,8 +9,8 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private Integer nacimiento;
-    private Integer deceso;
+    private int nacimiento;
+    private int deceso;
     @ManyToOne
     @JoinColumn(name = "libro_id", nullable = false)
     private Libro libro;
