@@ -14,28 +14,24 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String titulo;
+
+    @ElementCollection
     private List<String> lenguajes;
+
     private Integer descargas;
+
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores;
-    @Autowired
-    private AutorRepository autorRepository;
 
-    public Libro(){}
+    public Libro() {}
 
-    public Libro(DatosLibro datosLibro){
+    public Libro(DatosLibro datosLibro) {
         this.titulo = datosLibro.titulo();
         this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
-
-        if (datosLibro.autores() != null) {
-            this.autores = datosLibro.autores().stream()
-                    .map(autor -> new Autor(autor))
-                    .collect(Collectors.toList());
-            autorRepository.saveAll(autores);
-        }
     }
 
     public Long getId() {
