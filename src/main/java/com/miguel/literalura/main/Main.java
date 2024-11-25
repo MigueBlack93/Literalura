@@ -107,24 +107,24 @@ public class Main {
         System.out.println("Ingresa el año final del período:");
         fechaFinal = teclado.nextInt();
 
-        autoresPorFecha = autorRepository.buscarAutoresRegistradosEnUnPeriodo(fechaInicial, fechaFinal);
-
-        if (!autoresPorFecha.isEmpty()){
-            autoresPorFecha.forEach(autor -> System.out.println(autor.toString()));
-        }else {
-            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
-        }
+//        autoresPorFecha = autorRepository.buscarAutoresRegistradosEnUnPeriodo(fechaInicial, fechaFinal);
+//
+//        if (!autoresPorFecha.isEmpty()){
+//            autoresPorFecha.forEach(autor -> System.out.println(autor.toString()));
+//        }else {
+//            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
+//        }
     }
 
     private void mostrarLibrosPorIdioma() {
         System.out.println("Ingresa el nombre del libro o el autor que quieres buscar:");
         String idiomaABuscar = teclado.nextLine();
-        librosPorIdioma = repository.buscarLibroPorIdioma(idiomaABuscar);
-
-        if (!librosPorIdioma.isEmpty()){
-            librosPorIdioma.forEach(autor -> System.out.println(autor.toString()));
-        }else {
-            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
-        }
+//        librosPorIdioma = repository.buscarLibroPorIdioma(idiomaABuscar);
+//
+//        if (!librosPorIdioma.isEmpty()){
+//            librosPorIdioma.forEach(autor -> System.out.println(autor.toString()));
+//        }else {
+//            System.out.println("¡No se ha encontrado ningún autor registrado dentro de esas fechas!");
+//        }
     }
 }
