@@ -23,7 +23,6 @@ public class LibroService {
 
     public void guardarLibro(DatosLibro datosLibro) {
         Libro libro = new Libro(datosLibro);
-        libro.setLenguajes(datosLibro.lenguajes());
 
         if (datosLibro.autores() != null) {
             List<Autor> autores = datosLibro.autores().stream()
