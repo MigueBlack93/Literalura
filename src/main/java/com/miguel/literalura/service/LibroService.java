@@ -14,17 +14,16 @@ import java.util.stream.Collectors;
 @Service
 public class LibroService {
 
-    private final AutorRepository autorRepository;
-    private final LibroRepository libroRepository;
-
     @Autowired
-    public LibroService(AutorRepository autorRepository, LibroRepository libroRepository) {
-        this.autorRepository = autorRepository;
-        this.libroRepository = libroRepository;
-    }
+    private AutorRepository autorRepository;
+    @Autowired
+    private LibroRepository libroRepository;
 
-    public Libro guardarLibro(DatosLibro datosLibro) {
+    public LibroService(){}
+
+    public void guardarLibro(DatosLibro datosLibro) {
         Libro libro = new Libro(datosLibro);
+        libro.setLenguajes(datosLibro.lenguajes());
 
         if (datosLibro.autores() != null) {
             List<Autor> autores = datosLibro.autores().stream()
@@ -32,9 +31,8 @@ public class LibroService {
                     .collect(Collectors.toList());
             autores.forEach(autor -> autor.setLibro(libro));
             libro.setAutores(autores);
+            libroRepository.save(libro);
             autorRepository.saveAll(autores);
         }
-
-        return libroRepository.save(libro);
     }
 }
