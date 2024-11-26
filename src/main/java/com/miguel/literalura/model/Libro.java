@@ -30,7 +30,6 @@ public class Libro {
 
     public Libro(DatosLibro datosLibro) {
         this.titulo = datosLibro.titulo();
-        this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
     }
 
@@ -58,6 +57,14 @@ public class Libro {
         this.descargas = descargas;
     }
 
+    public List<String> getLenguajes() {
+        return lenguajes;
+    }
+
+    public void setLenguajes(List<String> lenguajes) {
+        this.lenguajes = lenguajes;
+    }
+
     public List<Autor> getAutores() {
         return autores;
     }
@@ -65,5 +72,10 @@ public class Libro {
     public void setAutores(List<Autor> autores) {
         autores.forEach(a -> a.setLibro(this));
         this.autores = autores;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
