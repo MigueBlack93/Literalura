@@ -7,28 +7,33 @@ import com.miguel.literalura.repository.AutorRepository;
 import com.miguel.literalura.repository.LibroRepository;
 import com.miguel.literalura.service.ConexionApi;
 import com.miguel.literalura.service.ConvierteDatos;
+import com.miguel.literalura.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
+@Component
 public class Main {
     private Scanner teclado = new Scanner(System.in);
     private ConexionApi conexionApi = new ConexionApi();
     private ConvierteDatos convierteDatos = new ConvierteDatos();
     private LibroRepository repository;
+    private AutorRepository autorRepository;
     private List<Libro> libros;
     private List<Autor> autores;
-    private int fechaInicial;
-    private int fechaFinal;
-    @Autowired
-    private AutorRepository autorRepository;
+    private Integer fechaInicial;
+    private Integer fechaFinal;
     private List<Autor> autoresPorFecha;
     private List<Libro> librosPorIdioma;
+    private LibroService libroService;
 
-    public Main(LibroRepository repository){
+    @Autowired
+    public Main(LibroRepository repository, AutorRepository autorRepository, LibroService libroService){
         this.repository = repository;
+        this.autorRepository = autorRepository;
+        this.libroService = libroService;
     }
 
     public void menu(){
@@ -84,9 +89,7 @@ public class Main {
         String json = conexionApi.conectarApi(nombreABuscar);
         DatosResultados datosResultados = convierteDatos.obtenerDatos(json, DatosResultados.class);
         System.out.println(datosResultados);
-        libros = datosResultados.libros().stream().map(libro -> new Libro(libro)).collect(Collectors.toList());
-        repository.saveAll(libros);
-        System.out.println(libros.toString());
+        datosResultados.libros().forEach(datosLibro -> libroService.guardarLibro(datosLibro));
     }
 
     private void mostrarLibrosRegistrados() {
