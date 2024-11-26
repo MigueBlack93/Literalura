@@ -30,6 +30,7 @@ public class Libro {
 
     public Libro(DatosLibro datosLibro) {
         this.titulo = datosLibro.titulo();
+        this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
     }
 
