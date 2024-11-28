@@ -89,4 +89,15 @@ public class Autor {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", nacimiento=" + nacimiento +
+                ", deceso=" + deceso +
+                ", libro=" + libro +
+                '}';
+    }
 }
