@@ -32,6 +32,7 @@ public class Libro {
         this.titulo = datosLibro.titulo();
         this.lenguajes = datosLibro.lenguajes();
         this.descargas = datosLibro.descargas();
+        this.autores = datosLibro.autores().stream().map(datoAutor -> new Autor(datoAutor)).collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -77,6 +78,12 @@ public class Libro {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Libro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", lenguajes=" + lenguajes +
+                ", descargas=" + descargas +
+                ", autores=" + autores +
+                '}';
     }
 }
